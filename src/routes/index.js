@@ -13,7 +13,12 @@ const routes = [
         // , name : List
         // , component : List
         , component : () => import('@/components/board/List')
-    // }, {
+    }, {
+        path: '/board/view/:id'
+        , component: () => import('@/components/board/View')
+    }, {
+        path: '/board/form'
+        , component: () => import('@/components/board/Form')
     //     path : '/catchAll(.*)'
     //     , component : Error404
     },

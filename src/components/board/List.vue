@@ -1,6 +1,14 @@
 <template>
     <div>
         <h2>게시판 리스트</h2>
+        <ul>
+            <li v-for="board in boardList" v-bind:key="board">
+                <a @click="goBoardView(board.id)">
+                    {{board.subject}}
+                </a>
+            </li>
+        </ul>
+        <a @click="goBoardForm()">등록하기</a>
     </div>
 </template>
 
@@ -16,18 +24,25 @@ export default {
     },
     methods: {
         getBoardList(){
-            //console.log('getBoardList');
             this.axios({
                 // headers: { 'Access-Control-Allow-Origin': '*' },
                 method : 'GET',
-                url : 'http://dev.lemonhc.com/mobile-ui/user/api/payment/v1/37100092/418372+2010000000/O/Y',
+                url : 'http://localhost:8088/board',
                 data : {}
             })
             .then((response) =>{
-                console.log('then..');
                 console.log(response);
+                if (response.data && response.data.length > 0){
+                  this.boardList = response.data;
+                }
             })
             .catch();
+        },
+        goBoardView(boardId){
+            this.$router.push({path : `./view/${boardId}`});
+        },
+        goBoardForm(){
+            this.$router.push({path : `./form`});
         }
     },
 }
