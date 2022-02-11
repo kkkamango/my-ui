@@ -29,6 +29,15 @@ export default {
 
 <style>
 body {margin: initial;}
+/* :root {
+  --el-color-primary: #409eff;
+  --el-color-success: #67c23a;
+  --el-color-warning: #e6a23c;
+  --el-color-danger: #f56c6c;
+  --el-color-error: #f56c6c;
+  --el-color-info: #909399;
+} */
+
 .common-layout .el-header,
 .common-layout .el-footer {
   background-color: #b3c0d1;
