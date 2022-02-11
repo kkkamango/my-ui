@@ -10,6 +10,7 @@
                 <tr>
                     <th>제목</th>
                     <td><input type="text" v-model="boardView.subject"></td>
+                    <!-- Popover -->
                 </tr>
                 <tr>
                     <th>내용</th>
