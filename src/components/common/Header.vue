@@ -7,7 +7,6 @@
                 <li><a href="/">홈</a></li>
                 <li><a href="/board/list">게시판</a></li>
                 <li><a href="#">메뉴3</a></li>
-                <li><a href="#">메뉴4</a></li>
             </ul>
         </div>
     </header>
