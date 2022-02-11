@@ -8,6 +8,7 @@
         </div>
         <a @click="goBoardList()">목록으로</a>
         <a @click="goBoardForm()">수정</a>
+        <a @click="deleteBoardView()">삭제</a>
     </div>
 </template>
 
@@ -36,6 +37,23 @@ export default {
                     console.log(response);
                     if (response.data){
                         this.boardView = response.data;
+                    }
+                })
+                .catch();
+        },
+        deleteBoardView(){
+            this.axios({
+                method : 'DELETE',
+                url : `http://localhost:8088/board/${this.id}`,
+                data : {}
+            })
+                .then((response) =>{
+                    console.log(response);
+                    if (response.data.result && response.data.result === 'OK'){
+                        alert('삭제되었습니다.');
+                        this.goBoardList();
+                    } else {
+                        // TODO 오류 처리
                     }
                 })
                 .catch();
