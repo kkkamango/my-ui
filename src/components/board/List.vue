@@ -8,10 +8,15 @@
                 </a>
             </li>
         </ul>
-        <a @click="goBoardForm()">등록하기</a>
+        <el-button type="primary" @click="goBoardForm()">
+            등록<el-icon><Plus /></el-icon>
+        </el-button>
     </div>
 </template>
 
+<script setup>
+import { Plus } from '@element-plus/icons'
+</script>
 <script>
 export default {
     data (){
