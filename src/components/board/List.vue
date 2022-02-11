@@ -1,18 +1,13 @@
 <template>
     <div>
         <h2>게시판 리스트</h2>
-        <el-table :data="boardList" stripe >
-            <el-column prop="id" label="아이디"></el-column>
-            <el-column prop="subject" label="제목"></el-column>
+        <el-table :data="boardList" @row-click="goBoardView"
+                  row-key="id"
+                  stripe style="width: 100%">
+            <el-table-column prop="id" label="아이디" width="200"></el-table-column>
+            <el-table-column prop="subject" label="제목"></el-table-column>
             <!-- <el-column prop=""></el-column> -->
         </el-table>
-        <ul>
-            <li v-for="board in boardList" v-bind:key="board">
-                <el-link href="javascript:;" @click="goBoardView(board.id)">
-                    {{board.subject}}
-                </el-link>
-            </li>
-        </ul>
         <el-button type="primary" :icon="Edit" @click="goBoardForm()">등록</el-button>
     </div>
 </template>
@@ -47,8 +42,8 @@ export default {
             })
             .catch();
         },
-        goBoardView(boardId){
-            this.$router.push({path : `./view/${boardId}`});
+        goBoardView(row){
+            this.$router.push({path : `./view/${row.id}`});
         },
         goBoardForm(){
             this.$router.push({path : `./form`});
