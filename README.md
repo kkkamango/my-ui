@@ -31,3 +31,9 @@ element-plus, icon 설치 및 추가
 npm install element-plus --save
 npm install @element-plus/icons-vue --save
 ```
+---
+vuex 게시판 구현
+```
+npm install vuex@next --save
+```
+---
