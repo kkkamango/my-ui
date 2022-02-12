@@ -1,18 +1,22 @@
 <template>
   <div>
     <Category/>
+    <ListCard/>
   </div>
 </template>
 
 <script>
 import Category from '@/components/main/Category';
+import ListCard from '@/components/board/ListCard';
+
 export default {
   name: 'HelloWorld',
   props: {
     msg: String
   },
     components : {
-      Category
+      Category,
+      ListCard
     }
 }
 </script>
