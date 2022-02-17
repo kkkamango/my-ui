@@ -29,7 +29,5 @@ export default {
 
 <style>
 @import "./assets/css/reset.css";
-/* 임시 */
-.purple{background-color: plum;}
-.brown{background-color: brown}
+@import "./assets/css/default.css";
 </style>

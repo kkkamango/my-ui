@@ -1,67 +1,74 @@
 <template>
     <div>
-        <h2>게시물 조회</h2>
+        <pageHeader title="카테고리 조회"/>
         <div>
-            <p>{{boardView.createdDate}}</p>
-            <p>{{boardView.subject}}</p>
-            <p>{{boardView.contents}}</p>
+            <p>{{categoryView.createdDate}}</p>
+            <p>{{categoryView.name}}</p>
+            <p>{{categoryView.sort}}</p>
+            <p>{{categoryView.description}}</p>
         </div>
-        <a @click="goBoardList()">목록으로</a>
-        <a @click="goBoardForm()">수정</a>
-        <a @click="deleteBoardView()">삭제</a>
+        <a @click="goCategoryList()">목록으로</a>
+        <a @click="goCategoryForm()">수정</a>
+        <a @click="deleteCategoryView()">삭제</a>
     </div>
 </template>
 
 <script>
+
+import PageHeader from "@/components/common/PageHeader";
+
 export default {
+    components :{
+        PageHeader
+    },
     data (){
         return {
             id : 0,
-            boardView : {}
+            categoryView : {}
         }
     },
     created() {
         this.id = this.$route.params.id || 0;
     },
     mounted() {
-        this.getBoardView();
+        this.getCategoryView();
     },
     methods : {
-        getBoardView(){
+        getCategoryView(){
             this.axios({
                 method : 'GET',
-                url : `/board/${this.id}`,
+                url : `/category/${this.id}`,
                 data : {}
             })
                 .then((response) =>{
                     console.log(response);
                     if (response.data){
-                        this.boardView = response.data;
+                        this.categoryView = response.data;
                     }
                 })
                 .catch();
         },
-        deleteBoardView(){
+        deleteCategoryView(){
             this.axios({
                 method : 'DELETE',
-                url : `/board/${this.id}`,
+                url : `/category/${this.id}`,
                 data : {}
             })
                 .then((response) =>{
                     console.log(response);
                     if (response.data.result && response.data.result === 'OK'){
                         alert('삭제되었습니다.');
-                        this.goBoardList();
+                        this.goCategoryList();
                     } else {
                         // TODO 오류 처리
                     }
                 })
                 .catch();
         },
-        goBoardList(){
+        goCategoryList(){
             this.$router.push({path : '../list'})
         },
-        goBoardForm(){
+        goCategoryForm(){
             this.$router.push({path: '../form', query: {id : this.id}});
         }
     }

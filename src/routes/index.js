@@ -18,6 +18,15 @@ const routes = [
         path: '/board/form'
         , component: () => import('@/components/board/Form')
     }, {
+        path: '/admin/category/list'
+        , component: () => import('@/components/category/List')
+    }, {
+        path: '/admin/category/view/:id'
+        , component: () => import('@/components/category/View')
+    }, {
+        path: '/admin/category/form'
+        , component: () => import('@/components/category/Form')
+    },{
         path: '/:pathMatch(.*)*',
         name: 'not-found',
         component: () => import('@/components/common/Error404')

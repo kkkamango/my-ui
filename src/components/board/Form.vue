@@ -45,7 +45,7 @@ export default {
         getBoardView(){
             this.axios({
                 method : 'GET',
-                url : `http://localhost:8088/board/${this.id}`,
+                url : `/board/${this.id}`,
                 data : {}
             })
                 .then((response) =>{
@@ -60,7 +60,7 @@ export default {
             console.log(this.boardView);
             this.axios({
                 method : 'POST',
-                url : `http://localhost:8088/board${this.id === 0 ? '' : '/' + this.id}`,
+                url : `/board${this.id === 0 ? '' : '/' + this.id}`,
                 data : {
                     subject : this.boardView.subject,
                     contents : this.boardView.contents

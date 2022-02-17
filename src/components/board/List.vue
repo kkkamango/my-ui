@@ -15,6 +15,9 @@
 <script setup>
 // import { Edit, Share, Delete, Search, Upload } from '@element-plus/icons-vue'
 import { Edit } from '@element-plus/icons-vue'
+// import { useStore } from 'vuex';
+//
+// const store = useStore();
 </script>
 <script>
 export default {
@@ -31,7 +34,7 @@ export default {
             this.axios({
                 // headers: { 'Access-Control-Allow-Origin': '*' },
                 method : 'GET',
-                url : 'http://localhost:8088/board',
+                url : '/board',
                 data : {}
             })
             .then((response) =>{
