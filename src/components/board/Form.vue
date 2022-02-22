@@ -1,35 +1,41 @@
 <template>
     <h2>게시물 {{ label }}</h2>
     <div>
-        <form>
-            <table>
-                <colgroup>
-                    <col width="20%">
-                    <col>
-                </colgroup>
-                <tr>
-                    <th>제목</th>
-                    <td><input type="text" v-model="boardView.subject"></td>
-                    <!-- Popover -->
-                </tr>
-                <tr>
-                    <th>내용</th>
-                    <td><textarea v-model="boardView.contents"></textarea></td>
-                </tr>
-            </table>
-        </form>
-        <a @click="goBoardList()">목록으로</a>
-        <a @click="saveBoard()">{{ label }}</a>
+        <el-form :model="categoryView" label-width="200px">
+            <el-form-item label="제목">
+                <el-input v-model="boardView.subject"></el-input>
+            </el-form-item>
+            <el-form-item label="첨부파일">
+                <el-upload name="file" action="http://localhost:8088/common/attach/BOARD_IMG_MAIN/1"
+                     multiple="false" accept="image/png, image/jpeg"
+                     before-remove="handleBeforeRemove"
+                     on-remove="handleRemove"
+                     on-success="handleSuccess">
+                    <el-button type="primary">첨부파일</el-button>
+                </el-upload>
+            </el-form-item>
+            <el-form-item label="내용">
+                <el-input type="textarea" v-model="boardView.contents" :rows="3" resize="none"
+                    placeholder="내용을 작성해 주세요." />
+            </el-form-item>
+            <el-form-item>
+                <el-button @click="goBoardList()">목록으로</el-button>
+                <el-button type="primary" @click="saveBoard()">{{ label }}</el-button>
+            </el-form-item>
+        </el-form>
     </div>
 </template>
 
 <script>
+// import {UploadFile} from 'element-plus/es/components/upload/src/upload.vue'
 export default {
     data(){
         return {
             id : 0,
             label : '등록',
-            boardView : {}
+            boardView : {},
+            BOARD_IMG_MAIN : 0, // 첨부파일
+
         }
     },
     created() {
@@ -85,6 +91,10 @@ export default {
         goBoardView(boardId){
             this.$router.push({path : `./view/${boardId}`});
         },
+        handleSuccess(){
+
+        }
+        
     }
 }
 </script>
