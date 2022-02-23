@@ -16,7 +16,8 @@ const routes = [
         , component: () => import('@/components/board/View')
     }, {
         path: '/board/form'
-        , component: () => import('@/components/board/Form')
+        , component: () => import('@/components/board/FormT1')
+        // , component: () => import('@/components/board/Form')
     }, {
         path: '/admin/category/list'
         , component: () => import('@/components/category/List')
