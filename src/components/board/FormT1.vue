@@ -112,13 +112,17 @@ export default {
                 .then((response) =>{
                     console.log(response);
                     if (response.data && response.data.id){
-                        // TODO T2로 이동하여 작성
+
                         alert(`${this.label}되었습니다.`);
-                        if(this.id === 0 ){
-                            this.goBoardList();
-                        } else {
-                            this.goBoardView(this.id);
-                        }
+                        // TODO T2로 이동하여 작성
+                        this.id = response.data.id;
+                        this.goBoardForm();
+
+                        // if(this.id === 0 ){
+                        //     this.goBoardList();
+                        // } else {
+                        //     this.goBoardView(this.id);
+                        // }
                     }
                 })
                 .catch();
@@ -144,6 +148,9 @@ export default {
         goBoardView(boardId){
             this.$router.push({path : `./view/${boardId}`});
         },
+        goBoardForm(){
+            this.$router.push({path: './form', query: {id : this.id}});
+        }
     }
 }
 </script>

@@ -1,30 +1,47 @@
 <template>
-    <h2>게시물 {{ label }} T2</h2>
+    <!-- <h2>게시물 {{ label }} T2</h2> -->
     <div>
-        <el-form :model="categoryView" label-width="200px">
+        <el-form :model="categoryView" label-width="auto">
             <el-form-item label="메인이미지">
-                <el-upload name="file" action="attach.BOARD_IMG_MAIN.path"
-                     multiple="false" accept="image/png, image/jpeg"
-                     before-remove="handleBeforeRemove"
-                     on-remove="handleRemove"
-                     on-success="handleSuccess(...arguments, 'BOARD_IMG_MAIN')">
+                <el-upload name="file" 
+                    :action="attach.BOARD_IMG_MAIN.path"
+                    :limit="1"
+                    accept="image/png, image/jpeg"
+                    :before-remove="handleBeforeRemove"
+                    :on-remove="handleRemove"
+                    :on-success="handleSuccess"><!-- handleSuccess(...arguments, {serviceName: 'BOARD_IMG_MAIN'}) -->
                     <el-button type="primary">첨부파일</el-button>
                 </el-upload>
             </el-form-item>
             <el-form-item label="상세이미지">
-
+                <el-upload name="file" 
+                    :action="attach.BOARD_IMG_DETAIL.path"
+                    :limit="9"
+                    accept="image/png, image/jpeg"
+                    :before-remove="handleBeforeRemove"
+                    :on-remove="handleRemove"
+                    :on-success="handleSuccess">
+                    <el-button type="primary">첨부파일</el-button>
+                </el-upload>
             </el-form-item>
             <el-form-item label="동영상">
-                
+                <el-upload name="file" 
+                    :action="attach.BOARD_IMG_MAIN.path"
+                    :limit="6"
+                    accept="vedio/*"
+                    :before-remove="handleBeforeRemove"
+                    :on-remove="handleRemove"
+                    :on-success="handleSuccess"><!-- handleSuccess(...arguments, {serviceName: 'BOARD_IMG_MAIN'}) -->
+                    <el-button type="primary">첨부파일</el-button>
+                </el-upload>
             </el-form-item>
-            <el-form-item label="수정횟수">
-                <el-input-number v-model="boardView.amount" :min="0" step-strictly controls="false"/>
-                <!-- <el-input v-model="boardView.amount" type="number" :min="5000" :step="1000" /> -->
+            <!-- <el-form-item label="수정횟수">
+                <el-input-number v-model="boardView.revisionNo" :min="0" step-strictly controls="false"/>
             </el-form-item>
             <el-form-item label="수정안내">
-                <el-input type="textarea" v-model="boardView.contents" :rows="3" resize="none"
-                    placeholder="설명을 작성해 주세요." />
-            </el-form-item>
+                <el-input type="textarea" v-model="boardView.revisionNoti" :rows="3" resize="none"
+                    placeholder="수정안내사항을 작성해 주세요." />
+            </el-form-item> -->
             <el-form-item>
                 <el-button @click="goBoardList()">목록으로</el-button>
                 <el-button type="primary" @click="saveBoard()">{{ label }}</el-button>
@@ -39,6 +56,7 @@ export default {
     data(){
         return {
             id : 0,
+            url : 'http://localhost:8088/common/attach/BOARD_IMG_MAIN/1',
             label : '등록',
             boardView : {},
             attach : {
@@ -115,9 +133,9 @@ export default {
         goBoardView(boardId){
             this.$router.push({path : `./view/${boardId}`});
         },
-        handleSuccess(response, file, fileList, serviceName){
+        handleSuccess(){
+            const serviceName = [].slice.call(arguments).find(d => d.serviceName)['serviceName'];
             console.log(serviceName);
-            console.log(response);
         },
         handleBeforeRemove(response){
             console.log(response);

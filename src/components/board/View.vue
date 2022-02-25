@@ -3,6 +3,7 @@
         <h2>게시물 조회</h2>
         <div>
             <p>{{boardView.createdDate}}</p>
+            <p>{{boardView.state}}</p>
             <p>{{boardView.subject}}</p>
             <p>{{boardView.contents}}</p>
         </div>
