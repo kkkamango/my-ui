@@ -149,7 +149,7 @@ export default {
             this.$router.push({path : `./view/${boardId}`});
         },
         goBoardForm(){
-            this.$router.push({path: './form', query: {id : this.id}});
+            this.$router.push({path: './form/T2', query: {id : this.id}});
         }
     }
 }

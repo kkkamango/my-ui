@@ -5,7 +5,8 @@
             <el-form-item label="메인이미지">
                 <el-upload name="file" 
                     :action="attach.BOARD_IMG_MAIN.path"
-                    :limit="1"
+                   :file-list="attach.BOARD_IMG_MAIN.fileList"
+                   :limit="1"
                     accept="image/png, image/jpeg"
                     :before-remove="handleBeforeRemove"
                     :on-remove="handleRemove"
@@ -16,6 +17,7 @@
             <el-form-item label="상세이미지">
                 <el-upload name="file" 
                     :action="attach.BOARD_IMG_DETAIL.path"
+                    :file-list="attach.BOARD_IMG_DETAIL.fileList"
                     :limit="9"
                     accept="image/png, image/jpeg"
                     :before-remove="handleBeforeRemove"
@@ -26,9 +28,10 @@
             </el-form-item>
             <el-form-item label="동영상">
                 <el-upload name="file" 
-                    :action="attach.BOARD_IMG_MAIN.path"
+                    :action="attach.BOARD_VIDEO.path"
+                    :file-list="attach.BOARD_VIDEO.fileList"
                     :limit="6"
-                    accept="vedio/*"
+                    accept="video/*"
                     :before-remove="handleBeforeRemove"
                     :on-remove="handleRemove"
                     :on-success="handleSuccess"><!-- handleSuccess(...arguments, {serviceName: 'BOARD_IMG_MAIN'}) -->
@@ -56,21 +59,21 @@ export default {
     data(){
         return {
             id : 0,
-            url : 'http://localhost:8088/common/attach/BOARD_IMG_MAIN/1',
+            // url : 'http://localhost:8088/common/attach/BOARD_IMG_MAIN/1',
             label : '등록',
             boardView : {},
             attach : {
                 requestUrl : 'http://localhost:8088/common/attach/',
                 BOARD_IMG_MAIN : {
-                    id : 0,
+                    fileList : [],
                     path : ''
                 },
                 BOARD_IMG_DETAIL : {
-                    ids : [],
+                    fileList : [],
                     path : ''
                 },
-                BOARD_VEDIO : {
-                    ids : [],
+                BOARD_VIDEO : {
+                    fileList : [],
                     path : ''
                 }
             }
@@ -85,7 +88,7 @@ export default {
             // URL 세팅
             this.attach.BOARD_IMG_MAIN.path = this.attach.requestUrl + 'BOARD_IMG_MAIN/' + this.id;
             this.attach.BOARD_IMG_DETAIL.path = this.attach.requestUrl + 'BOARD_IMG_DETAIL/' + this.id;
-            this.attach.BOARD_VEDIO.path = this.attach.requestUrl + 'BOARD_VEDIO/' + this.id;
+            this.attach.BOARD_VIDEO.path = this.attach.requestUrl + 'BOARD_VIDEO/' + this.id;
             this.getBoardView();
         }
     },
@@ -100,6 +103,31 @@ export default {
                     console.log(response);
                     if (response.data){
                         this.boardView = response.data;
+
+                        if (this.boardView.imgSrcMain){
+                            this.attach.BOARD_IMG_MAIN.fileList = [{
+                                name : this.boardView.imgSrcMain.fileName,
+                                url : this.boardView.imgSrcMain.filePath
+                            }];
+                        }
+
+                        if (this.boardView.imgSrcDetail && this.boardView.imgSrcDetail.length > 0){
+                            this.boardView.imgSrcDetail.forEach(img => {
+                                this.attach.BOARD_IMG_DETAIL.fileList.push({
+                                    name : img.fileName,
+                                    url : img.filePath
+                                });
+                            });
+                        }
+
+                        if (this.boardView.videoSrc && this.boardView.videoSrc.length > 0){
+                            this.boardView.videoSrc.forEach(img => {
+                                this.attach.BOARD_VIDEO.fileList.push({
+                                    name : img.fileName,
+                                    url : img.filePath
+                                });
+                            });
+                        }
                     }
                 })
                 .catch();
@@ -134,8 +162,8 @@ export default {
             this.$router.push({path : `./view/${boardId}`});
         },
         handleSuccess(){
-            const serviceName = [].slice.call(arguments).find(d => d.serviceName)['serviceName'];
-            console.log(serviceName);
+            // const serviceName = [].slice.call(arguments).find(d => d.serviceName)['serviceName'];
+            // console.log(serviceName);
         },
         handleBeforeRemove(response){
             console.log(response);

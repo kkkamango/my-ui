@@ -17,7 +17,16 @@ const routes = [
     }, {
         path: '/board/form'
         , component: () => import('@/components/board/Form')
-        // , component: () => import('@/components/board/Form')
+        , children : [
+            {
+                path: ''
+                , component: () => import('@/components/board/FormT1')
+            },
+            {
+                path: '/board/form/T2'
+                , component: () => import('@/components/board/FormT2')
+            }
+        ]
     }, {
         path: '/admin/category/list'
         , component: () => import('@/components/category/List')
