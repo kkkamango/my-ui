@@ -30,4 +30,7 @@ export default {
 <style>
 @import "./assets/css/reset.css";
 @import "./assets/css/default.css";
+.common-layout{
+    padding-bottom: 60px;
+}
 </style>

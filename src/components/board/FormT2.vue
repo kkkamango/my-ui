@@ -159,7 +159,7 @@ export default {
             this.$router.push({path : './list'});
         },
         goBoardView(boardId){
-            this.$router.push({path : `./view/${boardId}`});
+            this.$router.push({path : `../view/${boardId}`});
         },
         handleSuccess(){
             // const serviceName = [].slice.call(arguments).find(d => d.serviceName)['serviceName'];

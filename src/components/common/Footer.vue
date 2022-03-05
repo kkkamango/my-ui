@@ -1,6 +1,6 @@
 <template>
     <footer class="main-footer">
-        <el-row :gutter="10">
+        <el-row :gutter="10" type="flex" justify="space-between">
             <el-col :xs="{span:4, offset:0}" :sm="{span:4, offset:0}" :md="{span:4, offset:0}" :lg="{span:4, offset:0}" :xl="{span:4, offset:0}" class="lh18">
                 <el-icon :size="18"><House /></el-icon>
                 <p>홈</p>
@@ -36,9 +36,11 @@ export default {
 </script>
 
 <style scoped>
-.main-footer{width:100%; text-align:center; display: flex;
-    position: fixed;
-    bottom: 0px;
-    padding: 12px 0;}
-footer > .el-row {width : 100%;}
+footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+.main-footer{width:100%; text-align:center; display: flex;bottom: 0px;}
+footer > .el-row {width : 100%; margin: 0 !important;}
 </style>

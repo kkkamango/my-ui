@@ -1,7 +1,7 @@
 <template>
     <h2>게시물 {{ label }} T1</h2>
     <div>
-        <el-form :model="categoryView" label-width="200px">
+        <el-form :model="categoryView">
             <el-form-item label="카테고리">
                 <el-select v-model="boardView.category.id">
                     <el-option v-for="category in categoryList"

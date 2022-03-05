@@ -1,8 +1,8 @@
 :root {
-  --main-bg-color:#d3dce6
+  --main-bg-color:#f0f2f5
 }
 html, body, div, input, fieldset, form, h1, p, textarea, button { margin: 0; padding: 0; border: 0; box-sizing: border-box; }
-body { background-color: var(--main-bg-color); }
+body { background-color: var(--main-bg-color); height: 100%}
 textarea { resize: none; }
 li { list-style: none; }
 

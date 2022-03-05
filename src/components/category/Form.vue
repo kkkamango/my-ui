@@ -2,7 +2,7 @@
     <h2>카테고리 {{ label }}</h2>
 <!--    <pageHeader :title="카테고리 {{ label }}"/>-->
     <div>
-        <el-form :model="categoryView" label-width="200px">
+        <el-form :model="categoryView">
             <el-form-item label="이름">
                 <el-input v-model="categoryView.name"></el-input>
             </el-form-item>
