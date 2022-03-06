@@ -35,10 +35,12 @@
             </el-form-item>
         </el-form>
     </div>
+<!--    <el-message-box v-show="alert.show" :confirm-button-text="확인" icon-->
+<!--        :message="alert.message" :type="alert.type"/>-->
 </template>
 
 <script>
-// import {UploadFile} from 'element-plus/es/components/upload/src/upload.vue'
+// import {ElMessageBox} from 'element-plus'
 export default {
     data(){
         return {
@@ -58,8 +60,19 @@ export default {
             termList : [
                 {id : '1D', name : '1일'},{id : '2D', name : '2일'},{id : '1M', name : '1개월'},
             ],
+            // alert : {
+            //     show : false,
+            //     title : '',
+            //     message : '',
+            //     type : 'success',
+            //     callback : null,
+            //
+            // }
         }
     },
+    // components : {
+    //     ElMessageBox
+    // },
     created() {
         this.id = this.$route.query.id || 0;
         this.label = this.id === 0 ? '등록' : '수정';
@@ -113,16 +126,15 @@ export default {
                     console.log(response);
                     if (response.data && response.data.id){
 
-                        alert(`${this.label}되었습니다.`);
-                        // TODO T2로 이동하여 작성
-                        this.id = response.data.id;
-                        this.goBoardForm();
-
-                        // if(this.id === 0 ){
-                        //     this.goBoardList();
-                        // } else {
-                        //     this.goBoardView(this.id);
-                        // }
+                        // alert(`${this.label}되었습니다.`);
+                        // this.alert = true;
+                        // ElMessageBox.alert(`${this.label}되었습니다.`, '', {
+                        //     confirmButtonText : '확인',
+                        //     callback : () => {
+                        //         this.id = response.data.id;
+                        //         this.goBoardForm();
+                        //     }
+                        // });
                     }
                 })
                 .catch();

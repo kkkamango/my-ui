@@ -1,15 +1,17 @@
 <template>
     <div>
-        <h2>게시물 조회</h2>
         <div>
-            <p>{{boardView.createdDate}}</p>
-            <p>{{boardView.state}}</p>
-            <p>{{boardView.subject}}</p>
-            <p>{{boardView.contents}}</p>
+            <el-descriptions title="게시물 조회" :column="2" border>
+                <el-descriptions-item label="카테고리" v-if="boardView.category">{{boardView.category.name}}</el-descriptions-item>
+                <el-descriptions-item label="제목">{{boardView.subject}}</el-descriptions-item>
+                <el-descriptions-item label="작성일">{{boardView.createdDate}}</el-descriptions-item>
+                <el-descriptions-item label="설명">{{boardView.contents}}</el-descriptions-item>
+            </el-descriptions>
+<!--            <el-image :src="boardView.imgSrcMain.filePath" :fit="cover"/>-->
         </div>
-        <a @click="goBoardList()">목록으로</a>
-        <a @click="goBoardForm()">수정</a>
-        <a @click="deleteBoardView()">삭제</a>
+        <el-button @click="goBoardList()">목록으로</el-button>
+        <el-button type="primary" @click="goBoardForm()">수정</el-button>
+        <el-button type="danger" @click="deleteBoardView()">삭제</el-button>
     </div>
 </template>
 
